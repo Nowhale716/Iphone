@@ -1,49 +1,33 @@
-const links = document.querySelectorAll('.header-menu__item a');
+const scrollFunc = () => {
+    const links = document.querySelectorAll('.header-menu__item a');
+    const linkCharacteristics = document.querySelector('.card-details__link-characteristics');
 
-seamless.polyfill();
+    const newArray = [...links, linkCharacteristics];
 
-links.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
+    seamless.polyfill();
 
-        const id = element.getAttribute('href').substring(1);
+    newArray.forEach((element) => {
+        element.addEventListener('click', (event) => {
+            event.preventDefault();
 
-        const section = document.getElementById(id)
+            const id = element.getAttribute('href').substring(1);
 
-        if(section) {
-            seamless.elementScrollIntoView(section,{
-                behavior: 'smooth',
-                block: 'start',
-            });
-        } else {
-            seamless.elementScrollIntoView(document.querySelector("#characteristics"), {
-                behavior: "smooth",
-                block: "center",
-                inline: "center",
-            });
-        }
-    })
-});
+            const section = document.getElementById(id)
 
-const link = document.querySelectorAll('.card-details__link-characteristics a');
+            if (section) {
+                seamless.elementScrollIntoView(section, {
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            } else {
+                seamless.elementScrollIntoView(document.querySelector("#characteristics"), {
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                });
+            }
+        })
+    });
+}
 
-link.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        const section = document.getElementByClassName('card-details__link-characteristics a');
-
-        if(section) {
-            seamless.elementScrollIntoView(section,{
-                behavior: 'smooth',
-                block: 'start',
-            });
-        } else {
-            seamless.elementScrollIntoView(document.querySelector("#characteristics"), {
-                behavior: "smooth",
-                block: "center",
-                inline: "center",
-            });
-        }
-    })
-})
+scrollFunc();
